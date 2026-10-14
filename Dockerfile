@@ -15,4 +15,5 @@ USER hermes
 WORKDIR /home/hermes
 RUN mkdir -p .hermes
 
-CMD ["sh", "-c", "export PORT=3000 && hermes gateway start"]
+CMD ["hermes", "gateway", "start", "--port", "3000"]
+

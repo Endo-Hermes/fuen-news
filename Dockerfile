@@ -14,6 +14,7 @@ RUN useradd --create-home --shell /bin/bash hermes
 USER hermes
 WORKDIR /home/hermes
 RUN mkdir -p .hermes
+ENV PORT=3000
+CMD ["hermes", "gateway", "start"]
 
-CMD ["hermes", "gateway", "start", "--port", "3000"]
 

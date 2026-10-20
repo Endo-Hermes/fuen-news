@@ -7,8 +7,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     && rm -rf /var/lib/apt/lists/*
-
-RUN pip install hermes-agent
+RUN pip install "hermes-agent[telegram]"
 
 RUN useradd --create-home --shell /bin/bash hermes
 USER hermes
@@ -20,6 +19,7 @@ RUN mkdir -p .hermes
 ENV HERMES_DASHBOARD=1
 ENV HERMES_DASHBOARD_PORT=5005
 ENV HERMES_DASHBOARD_BASIC_AUTH_USERNAME=osint_fuenla
+ENV TELEGRAM_ALLOWED_USERS=538951954
 
 CMD ["sh", "-c", "hermes dashboard --host 0.0.0.0 --port ${HERMES_DASHBOARD_PORT:-5005} --no-open & exec hermes gateway run"]
 

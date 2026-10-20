@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     && rm -rf /var/lib/apt/lists/*
-RUN pip install "hermes-agent[telegram]"
+RUN pip install "hermes-agent[messaging]"
+  
 
 RUN useradd --create-home --shell /bin/bash hermes
 USER hermes

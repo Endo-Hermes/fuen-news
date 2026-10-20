@@ -12,9 +12,16 @@ RUN pip install hermes-agent
 
 RUN useradd --create-home --shell /bin/bash hermes
 USER hermes
+ENV HOME=/home/hermes
+
 WORKDIR /home/hermes
 RUN mkdir -p .hermes
-ENV PORT=3000
-CMD ["hermes", "gateway", "start"]
+
+ENV HERMES_DASHBOARD=1
+ENV HERMES_DASHBOARD_PORT=5005
+ENV HERMES_DASHBOARD_BASIC_AUTH_USERNAME=osint_fuenla
+
+CMD ["sh", "-c", "hermes dashboard --host 0.0.0.0 --port ${HERMES_DASHBOARD_PORT:-5005} --no-open & exec hermes gateway run"]
+
 
 

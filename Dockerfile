@@ -20,6 +20,7 @@ ENV HERMES_DASHBOARD=1
 ENV HERMES_DASHBOARD_PORT=5005
 ENV HERMES_DASHBOARD_BASIC_AUTH_USERNAME=osint_fuenla
 ENV TELEGRAM_ALLOWED_USERS=538951954
+RUN python -c "import telegram; print('telegram import OK')"
 
 CMD ["sh", "-c", "hermes dashboard --host 0.0.0.0 --port ${HERMES_DASHBOARD_PORT:-5005} --no-open & exec hermes gateway run"]
 

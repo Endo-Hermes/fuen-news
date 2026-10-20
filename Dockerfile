@@ -16,7 +16,7 @@ ENV HOME=/home/hermes
 
 WORKDIR /home/hermes
 RUN mkdir -p .hermes
-RUN printf 'model:\n  default: "glm5.3-flash"\n  provider: "custom"\n  base_url: "https://api.nan.builders/v1"\n' > /home/hermes/.hermes/config.yaml
+
 
 ENV HERMES_DASHBOARD=1
 ENV HERMES_DASHBOARD_PORT=5005
@@ -24,7 +24,7 @@ ENV HERMES_DASHBOARD_BASIC_AUTH_USERNAME=osint_fuenla
 ENV TELEGRAM_ALLOWED_USERS=538951954
 RUN python -c "import telegram; print('telegram import OK')"
 
-CMD ["sh", "-c", "hermes dashboard --host 0.0.0.0 --port ${HERMES_DASHBOARD_PORT:-5005} --no-open & exec hermes gateway run"]
+CMD ["sh","-c","printf \"model:\n  default: glm5.3-flash\n  provider: custom\n  base_url: https://api.nan.builders/v1\n  api_key: ${NAN_API_KEY}\n\" > /home/hermes/.hermes/config.yaml; hermes dashboard --host 0.0.0.0 --port ${HERMES_DASHBOARD_PORT:-5005} --no-open & exec hermes gateway run"]
 
 
 

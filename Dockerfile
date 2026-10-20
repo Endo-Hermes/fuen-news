@@ -16,6 +16,7 @@ ENV HOME=/home/hermes
 
 WORKDIR /home/hermes
 RUN mkdir -p .hermes
+RUN printf 'model:\n  default: "glm5.3-flash"\n  provider: "custom"\n  base_url: "https://api.nan.builders/v1"\n' > /home/hermes/.hermes/config.yaml
 
 ENV HERMES_DASHBOARD=1
 ENV HERMES_DASHBOARD_PORT=5005
